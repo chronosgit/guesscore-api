@@ -1,9 +1,8 @@
 # To do
 
-2. Setup Eslint (if necessary).
-3. Setup MongoDB.
-4. Setup Mongoose.
-5. Define architecture (w/ relearning of API style).
+1. Setup MongoDB.
+2. Setup Mongoose.
+3. Define architecture (w/ relearning of API style).
 
 # To learn
 
