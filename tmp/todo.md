@@ -1,6 +1,5 @@
 # To do
 
-1. Setup Prettier.
 2. Setup Eslint (if necessary).
 3. Setup MongoDB.
 4. Setup Mongoose.
