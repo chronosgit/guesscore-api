@@ -1,0 +1,44 @@
+{
+  "name": "guesscore-api",
+  "version": "1.0.0",
+  "description": "Backend application for Guesscore service",
+  "keywords": [
+    "api",
+    "backend",
+    "express",
+    "node",
+    "mongoose",
+    "mongodb",
+    "free",
+    "restapi"
+  ],
+  "homepage": "https://github.com/chronosgit/guesscore-api#readme",
+  "bugs": {
+    "url": "https://github.com/chronosgit/guesscore-api/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chronosgit/guesscore-api.git"
+  },
+  "license": "MIT",
+  "author": "chronosgit",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.1",
+    "prettier": "^3.5.3"
+  },
+  "lint-staged": {
+    "**/*.js": "prettier --write --ignore-unknown"
+  }
+}
