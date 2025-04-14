@@ -23,7 +23,7 @@
   "license": "MIT",
   "author": "chronosgit",
   "type": "commonjs",
-  "main": "index.ts",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
