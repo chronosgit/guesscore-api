@@ -1,5 +1,5 @@
 const m = require('mongoose');
-const handleApiError = require('utils/handleApiError');
+const handleApiError = require('@/utils/handleApiError');
 
 const RegistrationHandler = async (req, res) => {
 	try {

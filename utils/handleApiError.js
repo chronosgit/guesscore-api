@@ -1,8 +1,8 @@
-const error400 = require('errors/error400');
-const error401 = require('errors/error401');
-const error403 = require('errors/error403');
-const error500 = require('errors/error500');
-const errorInvalidToken = require('errors/errorInvalidToken');
+const error400 = require('@/errors/error400');
+const error401 = require('@/errors/error401');
+const error403 = require('@/errors/error403');
+const error500 = require('@/errors/error500');
+const errorInvalidToken = require('@/errors/errorInvalidToken');
 
 /**
  * @param {Error} err

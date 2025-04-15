@@ -1,5 +1,5 @@
-const error401 = require('errors/error401');
-const errorInvalidToken = require('errors/errorInvalidToken');
+const error401 = require('@/errors/error401');
+const errorInvalidToken = require('@/errors/errorInvalidToken');
 
 const authMiddleware = async (req, res, next) => {
 	const authHeader = req.headers.authorization;

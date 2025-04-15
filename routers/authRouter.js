@@ -1,5 +1,5 @@
 const express = require('express');
-const RegistrationHandler = require('handlers/auth/RegistrationHandler');
+const RegistrationHandler = require('@/handlers/auth/RegistrationHandler');
 
 const authRouter = express.Router();
 

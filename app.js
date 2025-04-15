@@ -1,8 +1,9 @@
 const express = require('express');
 require('dotenv').config();
-const authRouter = require('routers/authRouter');
-const ListenPortHandler = require('handlers/ListenPortHandler.js');
-const MongooseConnectHandler = require('handlers/MongooseConnectHandler.js');
+require('module-alias/register');
+const authRouter = require('@/routers/authRouter');
+const ListenPortHandler = require('@/handlers/ListenPortHandler.js');
+const MongooseConnectHandler = require('@/handlers/MongooseConnectHandler.js');
 
 const startServer = async () => {
 	try {
