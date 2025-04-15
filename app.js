@@ -16,6 +16,9 @@ const startServer = async () => {
 
 	const app = express();
 
+	app.use(express.json());
+	app.use(express.urlencoded({ extended: true }));
+
 	app.listen(process.env.PORT, ListenPortHandler);
 
 	app.use('/api/v1/auth', authRouter);

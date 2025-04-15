@@ -6,12 +6,12 @@ const RegistrationHandler = async (req, res) => {
 		const body = req.body;
 
 		if (!body || !body.username || !body.password) {
-			return res.status(400).json(handleApiError(err, '400'));
+			return res.status(400).json(handleApiError({ status: '400' }));
 		}
 
 		return res.status(201).json({ ...body });
 	} catch (err) {
-		return res.status(500).json(handleApiError(err));
+		return res.status(500).json(handleApiError({ err }));
 	}
 };
 
