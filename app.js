@@ -1,4 +1,5 @@
 const express = require('express');
+var cookieParser = require('cookie-parser');
 require('dotenv').config();
 require('module-alias/register');
 const authRouter = require('@/routers/authRouter');
@@ -18,6 +19,7 @@ const startServer = async () => {
 
 	app.use(express.json());
 	app.use(express.urlencoded({ extended: true }));
+	app.use(cookieParser());
 
 	app.listen(process.env.PORT, ListenPortHandler);
 

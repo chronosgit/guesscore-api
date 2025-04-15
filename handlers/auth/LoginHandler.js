@@ -1,9 +1,9 @@
-const m = require('mongoose');
+const bcrypt = require('bcryptjs');
 const UserModel = require('@/models/UserModel');
 const handleApiError = require('@/utils/handleApiError');
 const signToken = require('@/utils/signToken');
 
-const RegistrationHandler = async (req, res) => {
+const LoginHandler = async (req, res) => {
 	try {
 		const body = req.body;
 
@@ -16,34 +16,47 @@ const RegistrationHandler = async (req, res) => {
 
 		const { username, password } = body;
 
-		const userWithSuchUsername = await UserModel.findOne({ username });
+		const userWithSuchUsername = await UserModel.findOne({
+			username: username.trim(),
+		});
 
-		if (userWithSuchUsername != null) {
-			return res.status(400).json(
+		if (userWithSuchUsername == null) {
+			return res.status(404).json(
 				handleApiError({
-					status: 400,
-					message: 'Such user already exists',
+					status: '404',
 				}),
 			);
 		}
 
-		const user = await UserModel.create({
-			username: username.trim(),
-			password: password.trim(),
-		});
+		const isMatch = await bcrypt.compare(
+			password,
+			userWithSuchUsername.password.trim(),
+		);
+
+		if (!isMatch) {
+			return res
+				.status(400)
+				.json(handleApiError({ status: 400, message: 'Invalid password' }));
+		}
 
 		const accessToken = signToken({
-			payload: { userId: user._id, username: user.username },
-			time: '15m',
+			payload: {
+				userId: userWithSuchUsername.id,
+				username: userWithSuchUsername.username,
+			},
+			time: '15min',
 		});
 
 		const refreshToken = signToken({
-			payload: { userId: user._id, username: user.username },
+			payload: {
+				userId: userWithSuchUsername.id,
+				username: userWithSuchUsername.username,
+			},
 			time: '7d',
 		});
 
 		return res
-			.status(201)
+			.status(200)
 			.cookie('refreshToken', refreshToken, {
 				httpOnly: true,
 				secure: true,
@@ -57,4 +70,4 @@ const RegistrationHandler = async (req, res) => {
 	}
 };
 
-module.exports = RegistrationHandler;
+module.exports = LoginHandler;
