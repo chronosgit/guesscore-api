@@ -1,8 +1,8 @@
 const express = require('express');
 require('dotenv').config();
 
-const ListenPortHandler = require('./handlers/ListenPortHandler.js');
-const MongooseConnectHandler = require('./handlers/MongooseConnectHandler.js');
+const ListenPortHandler = require('handlers/ListenPortHandler.js');
+const MongooseConnectHandler = require('handlers/MongooseConnectHandler.js');
 
 const startServer = async () => {
 	try {
