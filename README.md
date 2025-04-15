@@ -1,0 +1,3 @@
+# Temporary
+
+CREATE UPLOADS FOLDER AT ROOT BTW

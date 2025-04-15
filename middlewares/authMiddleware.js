@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const error401 = require('@/errors/error401');
 const errorInvalidToken = require('@/errors/errorInvalidToken');
 
@@ -17,6 +18,8 @@ const authMiddleware = async (req, res, next) => {
 
 		next();
 	} catch (err) {
+		console.log(err);
+
 		return res.status(401).json(errorInvalidToken);
 	}
 };
