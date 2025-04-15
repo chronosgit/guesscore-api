@@ -5,15 +5,12 @@ const error500 = require('@/errors/error500');
 const errorInvalidToken = require('@/errors/errorInvalidToken');
 
 /**
- * @param {Error} err
- * @param {'400' | '401' | '403' | 'TOKEN_INVALID' | undefined} status
+ * @param {{status: '400' | '401' | '403' | 'TOKEN_INVALID' | undefined, err: Error | undefined}} data
  */
-const handleApiError = (err, status) => {
-	console.error(err);
+const handleApiError = (data) => {
+	if (data.err) console.error(data.err);
 
-	if (status == null) return error500;
-
-	switch (status) {
+	switch (data.status) {
 		case '400':
 			return error400;
 		case '401':
