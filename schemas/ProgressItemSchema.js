@@ -1,8 +1,12 @@
-const { difficultyEnum } = require('@/constants');
-const { progressItemTypeEnum } = require('@/constants/features/progress');
 const m = require('mongoose');
+const { difficultyEnum } = require('@/constants');
+const { progressItemTypeEnum } = require('@/constants/progress');
 
 const ProgressItemSchema = new m.Schema({
+	userId: {
+		type: m.Types.ObjectId,
+		required: true,
+	},
 	name: {
 		type: String,
 		required: true,
@@ -35,11 +39,10 @@ const ProgressItemSchema = new m.Schema({
 	},
 	startedAt: {
 		type: Date,
-		default: null,
+		required: true,
 	},
 	finishedAt: {
 		type: Date,
-		default: null,
 	},
 });
 

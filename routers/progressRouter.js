@@ -4,6 +4,7 @@ const authMiddleware = require('@/middlewares/authMiddleware');
 const fileMiddleware = require('@/middlewares/fileMiddleware');
 const CreateProgressItemHandler = require('@/handlers/progress/CreateProgressItemHandler');
 const handleApiError = require('@/utils/handleApiError');
+const GetProgressItemsHandler = require('@/handlers/progress/GetProgressItemsHandler');
 
 const progressRouter = express.Router();
 
@@ -24,6 +25,8 @@ const uploadMiddleware = (req, res, next) => {
 		next();
 	});
 };
+
+progressRouter.get('/items', authMiddleware, GetProgressItemsHandler);
 
 progressRouter.post(
 	'/items',
