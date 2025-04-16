@@ -2,11 +2,11 @@ const ProgressItemModel = require('@/models/ProgressItemModel');
 const { difficultyEnum } = require('@/constants');
 const { progressItemTypeEnum } = require('@/constants/progress');
 const handleApiError = require('@/utils/handleApiError');
+const createImageObject = require('@/utils/createImageObject');
 
 const CreateProgressItemHandler = async (req, res) => {
 	try {
 		const body = req.body;
-		// const file = req.file;
 
 		if (
 			typeof body.name !== 'string' ||
@@ -32,7 +32,7 @@ const CreateProgressItemHandler = async (req, res) => {
 		if (body.labels) data['labels'] = body.labels;
 		if (body.link) data['link'] = body.link;
 		if (body.finishedAt) data['finishedAt'] = body.finishedAt;
-		// if (req.file) data['image'] = body.finishedAt;
+		if (req.file) data['image'] = createImageObject(req.file).path;
 
 		const progressItem = await ProgressItemModel.create(data);
 
