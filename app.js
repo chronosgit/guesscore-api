@@ -12,7 +12,7 @@ const handleApiError = require('@/utils/handleApiError');
 
 const startServer = async () => {
 	try {
-		MongooseConnectHandler();
+		await MongooseConnectHandler();
 	} catch (err) {
 		console.error('Failed to connect to MongoDB', err);
 
