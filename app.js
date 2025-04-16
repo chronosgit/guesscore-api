@@ -8,7 +8,6 @@ const authRouter = require('@/routers/authRouter');
 const progressRouter = require('@/routers/progressRouter');
 const ListenPortHandler = require('@/handlers/ListenPortHandler.js');
 const MongooseConnectHandler = require('@/handlers/MongooseConnectHandler.js');
-const handleApiError = require('@/utils/handleApiError');
 
 const startServer = async () => {
 	try {
