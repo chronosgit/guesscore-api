@@ -1,11 +1,11 @@
 const difficultyEnum = [
-	'breeze',
-	'very easy',
-	'easy',
-	'medium',
-	'slightly hard',
-	'hard',
-	'insane',
+	'BREEZE',
+	'VERY_EASY',
+	'EASY',
+	'MEDIUM',
+	'SLIGHTLY_HARD',
+	'HARD',
+	'INSANE',
 ];
 
 module.exports = {

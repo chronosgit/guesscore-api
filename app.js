@@ -1,5 +1,6 @@
 const express = require('express');
-var cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
+const path = require('path');
 require('dotenv').config();
 require('module-alias/register');
 const { upload } = require('@/lib/multer');
@@ -29,6 +30,8 @@ const startServer = async () => {
 	app.use('/api/v1/auth', authRouter);
 
 	app.use('/api/v1/progress', progressRouter);
+
+	app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 };
 
 startServer();

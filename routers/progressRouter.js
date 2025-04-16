@@ -1,9 +1,12 @@
 const express = require('express');
 const { upload } = require('@/lib/multer');
 const authMiddleware = require('@/middlewares/authMiddleware');
-const fileMiddleware = require('@/middlewares/fileMiddleware');
 const CreateProgressItemHandler = require('@/handlers/progress/CreateProgressItemHandler');
+const GetProgressItemsHandler = require('@/handlers/progress/GetProgressItemsHandler');
+const GetProgressItemHandler = require('@/handlers/progress/GetProgressItemHandler');
+const DeleteProgressItemHandler = require('@/handlers/progress/DeleteProgressItemHandler');
 const handleApiError = require('@/utils/handleApiError');
+const UpdateProgressItemHandler = require('@/handlers/progress/UpdateProgressItemHandler');
 
 const progressRouter = express.Router();
 
@@ -25,11 +28,24 @@ const uploadMiddleware = (req, res, next) => {
 	});
 };
 
+progressRouter.get('/items', authMiddleware, GetProgressItemsHandler);
+
+progressRouter.get('/items/:id', authMiddleware, GetProgressItemHandler);
+
 progressRouter.post(
 	'/items',
 	authMiddleware,
 	uploadMiddleware,
 	CreateProgressItemHandler,
 );
+
+progressRouter.put(
+	'/items/:id',
+	authMiddleware,
+	uploadMiddleware,
+	UpdateProgressItemHandler,
+);
+
+progressRouter.delete('/items/:id', authMiddleware, DeleteProgressItemHandler);
 
 module.exports = progressRouter;
