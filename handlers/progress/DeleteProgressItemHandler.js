@@ -1,6 +1,8 @@
 const { isValidObjectId } = require('mongoose');
 const ProgressItemModel = require('@/models/ProgressItemModel');
 const handleApiError = require('@/utils/handleApiError');
+const deleteUploadedFile = require('@/utils/deleteUploadedFile');
+const getFilenameFromUrl = require('@/utils/getFilenameFromUrl');
 
 const DeleteProgressItemHandler = async (req, res) => {
 	try {
@@ -23,6 +25,8 @@ const DeleteProgressItemHandler = async (req, res) => {
 		if (String(progressItem.userId) !== String(req.user?.userId)) {
 			return res.status(403).json(handleApiError({ status: 403 }));
 		}
+
+		deleteUploadedFile(getFilenameFromUrl(progressItem.image));
 
 		await progressItem.deleteOne();
 

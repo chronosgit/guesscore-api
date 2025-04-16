@@ -4,15 +4,16 @@ const bcrypt = require('bcryptjs');
 const UserSchema = new m.Schema({
 	username: {
 		type: String,
-		unique: String,
-		required: String,
-		trim: String,
+		unique: true,
+		required: true,
+		trim: true,
 		minlength: 1,
 		maxlength: 32,
 	},
 	password: {
 		type: String,
-		required: String,
+		required: true,
+		trim: true,
 		minlength: 1,
 		maxlength: 32,
 	},

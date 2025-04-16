@@ -4,6 +4,8 @@ const { difficultyEnum } = require('@/constants');
 const { progressItemTypeEnum } = require('@/constants/progress');
 const handleApiError = require('@/utils/handleApiError');
 const createImageObject = require('@/utils/createImageObject');
+const deleteUploadedFile = require('@/utils/deleteUploadedFile');
+const getFilenameFromUrl = require('@/utils/getFilenameFromUrl');
 
 const UpdateProgressItemHandler = async (req, res) => {
 	try {
@@ -20,9 +22,10 @@ const UpdateProgressItemHandler = async (req, res) => {
 		const body = req.body;
 
 		if (
-			typeof body.name !== 'string' ||
-			typeof body.description !== 'string' ||
-			typeof body.startedAt !== 'string' ||
+			body.name == null ||
+			body.description == null ||
+			body.startedAt == null ||
+			req.user?.userId == null ||
 			!progressItemTypeEnum.includes(body.type) ||
 			!difficultyEnum.includes(body.difficulty)
 		) {
@@ -39,20 +42,23 @@ const UpdateProgressItemHandler = async (req, res) => {
 			labels: body.labels,
 			link: body.link,
 			finishedAt: body.finishedAt,
-			image: req.file ? createImageObject(req.file).path : '',
+			image: req.file ? createImageObject(req.file).path : null,
 		};
 
-		const progressItem = await ProgressItemModel.findByIdAndUpdate(
-			{ _id: id },
-			data,
-			{ new: true, runValidators: true },
-		);
+		const progressItem = await ProgressItemModel.findById(id);
 
 		if (progressItem == null) {
 			return res.status(404).json(handleApiError({ status: 404 }));
 		}
 
-		return res.status(201).json(progressItem);
+		if (progressItem.image) {
+			deleteUploadedFile(getFilenameFromUrl(progressItem.image));
+		}
+
+		Object.assign(progressItem, data);
+		await progressItem.save();
+
+		return res.status(200).json(progressItem);
 	} catch (err) {
 		return res.status(500).json(handleApiError({ err }));
 	}
