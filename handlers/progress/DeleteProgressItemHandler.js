@@ -2,7 +2,7 @@ const { isValidObjectId } = require('mongoose');
 const ProgressItemModel = require('@/models/ProgressItemModel');
 const handleApiError = require('@/utils/handleApiError');
 
-const GetProgressItemHandler = async (req, res) => {
+const DeleteProgressItemHandler = async (req, res) => {
 	try {
 		const id = req.params?.id;
 
@@ -14,7 +14,7 @@ const GetProgressItemHandler = async (req, res) => {
 				);
 		}
 
-		const progressItem = await ProgressItemModel.findById(id);
+		const progressItem = await ProgressItemModel.findById({ _id: id });
 
 		if (progressItem == null) {
 			return res.status(404).json(handleApiError({ status: 404 }));
@@ -24,10 +24,12 @@ const GetProgressItemHandler = async (req, res) => {
 			return res.status(403).json(handleApiError({ status: 403 }));
 		}
 
-		return res.status(200).json(progressItem);
+		await progressItem.deleteOne();
+
+		return res.sendStatus(204);
 	} catch (err) {
 		return res.status(500).handleApiError({ err });
 	}
 };
 
-module.exports = GetProgressItemHandler;
+module.exports = DeleteProgressItemHandler;

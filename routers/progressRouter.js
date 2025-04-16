@@ -2,9 +2,10 @@ const express = require('express');
 const { upload } = require('@/lib/multer');
 const authMiddleware = require('@/middlewares/authMiddleware');
 const CreateProgressItemHandler = require('@/handlers/progress/CreateProgressItemHandler');
-const handleApiError = require('@/utils/handleApiError');
 const GetProgressItemsHandler = require('@/handlers/progress/GetProgressItemsHandler');
 const GetProgressItemHandler = require('@/handlers/progress/GetProgressItemHandler');
+const DeleteProgressItemHandler = require('@/handlers/progress/DeleteProgressItemHandler');
+const handleApiError = require('@/utils/handleApiError');
 
 const progressRouter = express.Router();
 
@@ -36,5 +37,7 @@ progressRouter.post(
 	uploadMiddleware,
 	CreateProgressItemHandler,
 );
+
+progressRouter.delete('/items/:id', authMiddleware, DeleteProgressItemHandler);
 
 module.exports = progressRouter;

@@ -10,7 +10,9 @@ const GetProgressItemsHandler = async (req, res) => {
 	try {
 		const q = req.query || {};
 
-		const filter = {};
+		const filter = {
+			userId: req.user?.userId,
+		};
 		if (q.name) filter.name = { $regex: q.name, $options: 'i' };
 		if (q.author) filter.author = { $regex: q.author, $options: 'i' };
 		if (progressItemTypeEnum.includes(q.type)) filter.type = q.type;
