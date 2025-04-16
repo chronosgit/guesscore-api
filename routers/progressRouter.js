@@ -6,6 +6,7 @@ const GetProgressItemsHandler = require('@/handlers/progress/GetProgressItemsHan
 const GetProgressItemHandler = require('@/handlers/progress/GetProgressItemHandler');
 const DeleteProgressItemHandler = require('@/handlers/progress/DeleteProgressItemHandler');
 const handleApiError = require('@/utils/handleApiError');
+const UpdateProgressItemHandler = require('@/handlers/progress/UpdateProgressItemHandler');
 
 const progressRouter = express.Router();
 
@@ -36,6 +37,13 @@ progressRouter.post(
 	authMiddleware,
 	uploadMiddleware,
 	CreateProgressItemHandler,
+);
+
+progressRouter.put(
+	'/items/:id',
+	authMiddleware,
+	uploadMiddleware,
+	UpdateProgressItemHandler,
 );
 
 progressRouter.delete('/items/:id', authMiddleware, DeleteProgressItemHandler);
