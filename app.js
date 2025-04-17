@@ -4,7 +4,6 @@ const cors = require('cors');
 const path = require('path');
 require('dotenv').config();
 require('module-alias/register');
-const { upload } = require('@/lib/multer');
 const authRouter = require('@/routers/authRouter');
 const progressRouter = require('@/routers/progressRouter');
 const ListenPortHandler = require('@/handlers/ListenPortHandler.js');
