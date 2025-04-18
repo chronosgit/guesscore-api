@@ -11,7 +11,7 @@ const RegistrationHandler = async (req, res) => {
 			typeof body?.username !== 'string' ||
 			typeof body?.password !== 'string'
 		) {
-			return res.status(400).json(handleApiError({ status: '400' }));
+			return res.status(400).json(handleApiError({ status: 400 }));
 		}
 
 		const { username, password } = body;
