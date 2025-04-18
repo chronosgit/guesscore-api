@@ -76,7 +76,7 @@ It also returns a refresh token in a secured cookie.
 
 It also returns a refresh token in a secured cookie.
 
-### POST /api/v1/auth/refresh
+### GET /api/v1/auth/refresh
 
 **Refreshing access token**
 
@@ -90,7 +90,7 @@ Refresh cookie must be sent in the request
 }
 ```
 
-### POST /api/v1/auth/logout
+### GET /api/v1/auth/logout
 
 **Refreshing access token**
 
