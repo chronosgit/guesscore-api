@@ -30,7 +30,7 @@ const RefreshTokensHandler = async (req, res) => {
 				time: '15m',
 			});
 
-			return res.status(200).json({ accessToken });
+			return res.status(200).json({ accessToken, username: payload.username });
 		});
 	} catch (err) {
 		return res.status(500).json(handleApiError({ err }));
