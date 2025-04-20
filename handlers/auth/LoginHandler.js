@@ -42,7 +42,7 @@ const LoginHandler = async (req, res) => {
 
 		const accessToken = signToken({
 			payload: {
-				userId: userWithSuchUsername.id,
+				userId: userWithSuchUsername._id,
 				username: userWithSuchUsername.username,
 			},
 			time: '15min',
@@ -50,7 +50,7 @@ const LoginHandler = async (req, res) => {
 
 		const refreshToken = signToken({
 			payload: {
-				userId: userWithSuchUsername.id,
+				userId: userWithSuchUsername._id,
 				username: userWithSuchUsername.username,
 			},
 			time: '7d',

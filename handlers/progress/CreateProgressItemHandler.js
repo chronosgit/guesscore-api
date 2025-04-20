@@ -13,13 +13,17 @@ const CreateProgressItemHandler = async (req, res) => {
 			body.name == null ||
 			body.description == null ||
 			body.startedAt == null ||
-			req.user?.userId == null ||
 			!progressItemTypeEnum.includes(body.type) ||
 			!difficultyEnum.includes(body.difficulty)
 		) {
 			deleteUploadedFile(req.file?.filename);
 
-			return res.status(400).json(handleApiError({ status: 400 }));
+			return res.status(400).json(
+				handleApiError({
+					status: 400,
+					message: 'Required fields must be filled',
+				}),
+			);
 		}
 
 		const data = {
