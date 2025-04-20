@@ -26,7 +26,7 @@ const RefreshTokensHandler = async (req, res) => {
 			}
 
 			const accessToken = signToken({
-				payload: { userId: payload._id, username: payload.username },
+				payload: { userId: payload.userId, username: payload.username },
 				time: '15m',
 			});
 

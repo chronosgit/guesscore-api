@@ -25,7 +25,6 @@ const UpdateProgressItemHandler = async (req, res) => {
 			body.name == null ||
 			body.description == null ||
 			body.startedAt == null ||
-			req.user?.userId == null ||
 			!progressItemTypeEnum.includes(body.type) ||
 			!difficultyEnum.includes(body.difficulty)
 		) {

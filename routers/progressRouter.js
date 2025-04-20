@@ -5,8 +5,8 @@ const CreateProgressItemHandler = require('@/handlers/progress/CreateProgressIte
 const GetProgressItemsHandler = require('@/handlers/progress/GetProgressItemsHandler');
 const GetProgressItemHandler = require('@/handlers/progress/GetProgressItemHandler');
 const DeleteProgressItemHandler = require('@/handlers/progress/DeleteProgressItemHandler');
-const handleApiError = require('@/utils/handleApiError');
 const UpdateProgressItemHandler = require('@/handlers/progress/UpdateProgressItemHandler');
+const handleApiError = require('@/utils/handleApiError');
 
 const progressRouter = express.Router();
 

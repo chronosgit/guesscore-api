@@ -20,13 +20,16 @@ const ProgressItemSchema = new m.Schema({
 	author: {
 		type: String,
 		trim: true,
+		default: '',
 	},
 	labels: {
 		type: [String],
+		default: [],
 	},
 	link: {
 		type: String,
 		trim: true,
+		default: '',
 	},
 	type: {
 		type: String,
@@ -40,7 +43,7 @@ const ProgressItemSchema = new m.Schema({
 	},
 	image: {
 		type: String,
-		default: null,
+		default: '',
 	},
 	startedAt: {
 		type: Date,
@@ -48,6 +51,7 @@ const ProgressItemSchema = new m.Schema({
 	},
 	finishedAt: {
 		type: Date,
+		default: '',
 	},
 });
 
