@@ -25,7 +25,7 @@ const GetProgressItemsHandler = async (req, res) => {
 		});
 
 		const progressItems = await ProgressItemModel.find(filter)
-			.sort(q.sort ?? '')
+			.sort(q.sort || 'startedAt')
 			.skip(skipNumber)
 			.limit(perPage);
 
