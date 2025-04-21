@@ -7,24 +7,20 @@ const GetProgressItemHandler = async (req, res) => {
 		const id = req.params?.id;
 
 		if (!isValidObjectId(id)) {
-			return res
-				.status(400)
-				.json(
-					handleApiError({ status: 400, message: 'Invalid progress item ID' }),
-				);
+			return res.status(200).json({ progressItem: null });
 		}
 
 		const progressItem = await ProgressItemModel.findById(id);
 
 		if (progressItem == null) {
-			return res.status(404).json(handleApiError({ status: 404 }));
+			return res.status(200).json({ progressItem: null });
 		}
 
 		if (String(progressItem.userId) !== String(req.user?.userId)) {
 			return res.status(403).json(handleApiError({ status: 403 }));
 		}
 
-		return res.status(200).json(progressItem);
+		return res.status(200).json({ progressItem });
 	} catch (err) {
 		return res.status(500).handleApiError({ err });
 	}
