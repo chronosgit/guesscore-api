@@ -30,7 +30,7 @@ const DeleteProgressItemHandler = async (req, res) => {
 
 		await progressItem.deleteOne();
 
-		return res.sendStatus(204);
+		return res.status(200).json({});
 	} catch (err) {
 		return res.status(500).handleApiError({ err });
 	}

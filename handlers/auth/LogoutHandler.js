@@ -10,7 +10,7 @@ const LogoutHandler = async (_, res) => {
 			maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
 		});
 
-		return res.sendStatus(200);
+		return res.status(200).json({});
 	} catch (err) {
 		return res.status(500).json(handleApiError({ err }));
 	}
