@@ -57,7 +57,7 @@ const UpdateProgressItemHandler = async (req, res) => {
 		Object.assign(progressItem, data);
 		await progressItem.save();
 
-		return res.status(200).json(progressItem);
+		return res.status(200).json({ progressItem });
 	} catch (err) {
 		return res.status(500).json(handleApiError({ err }));
 	}

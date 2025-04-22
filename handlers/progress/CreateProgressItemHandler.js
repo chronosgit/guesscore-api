@@ -43,7 +43,7 @@ const CreateProgressItemHandler = async (req, res) => {
 
 		const progressItem = await ProgressItemModel.create(data);
 
-		return res.status(201).json({ ...progressItem._doc });
+		return res.status(201).json({ progressItem: progressItem._doc });
 	} catch (err) {
 		deleteUploadedFile(req.file?.filename);
 
