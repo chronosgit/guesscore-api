@@ -22,7 +22,7 @@ const GetProgressItemHandler = async (req, res) => {
 
 		return res.status(200).json({ progressItem });
 	} catch (err) {
-		return res.status(500).handleApiError({ err });
+		return res.status(500).json(handleApiError({ err }));
 	}
 };
 
